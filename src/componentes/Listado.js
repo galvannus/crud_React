@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Post from './Post';
 
 class Listado extends Component {
 
@@ -6,10 +7,24 @@ class Listado extends Component {
         const posts = this.props.posts;
         
         if(posts.length === 0) return null
-        console.log(posts)
+        return(
+            <React.Fragment>
+                {Object.keys(posts).map(post => (
+                    <Post
+                        key={post}
+                        info={this.props.posts[post]}
+                        borrarPost={this.props.borrarPost}
+                    />
+                ))}
+            </React.Fragment>
+        )
     }
     
     render() {
+
+        const posts = this.props.posts;
+
+        if(posts.length === 0) return null
         return(
             <table className="table">
                 <thead>
